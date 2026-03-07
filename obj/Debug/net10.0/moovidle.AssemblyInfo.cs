@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("moovidle")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+100a826dae005d836a7fa559d54a13df7d5b0d5a")]
 [assembly: System.Reflection.AssemblyProductAttribute("moovidle")]
 [assembly: System.Reflection.AssemblyTitleAttribute("moovidle")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

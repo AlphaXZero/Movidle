@@ -50,11 +50,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/lenovo/Bureau/moovidle/moovidle.csproj",
+      "projectUniqueName": "/home/lenovo/Bureau/movidle/moovidle.csproj",
       "projectName": "moovidle",
-      "projectPath": "/home/lenovo/Bureau/moovidle/moovidle.csproj",
+      "projectPath": "/home/lenovo/Bureau/movidle/moovidle.csproj",
       "packagesPath": "/home/lenovo/.nuget/packages/",
-      "outputPath": "/home/lenovo/Bureau/moovidle/obj/",
+      "outputPath": "/home/lenovo/Bureau/movidle/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/lenovo/.nuget/NuGet/NuGet.Config"
