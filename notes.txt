@@ -1,14 +1,3 @@
--dans service, le http client sert à .NET pour faire les appells http
-cacher la clé: 
-
-
-pb : toujours en dur dans les précédents commit
-
-
-
-
-
-
 à faire:
 -mettre quelques films dans une bdd pour faciliter entrée film
 utiliser tmdb et prendre les 200 top popular pour en faire une db update chaque jour
@@ -17,3 +6,4 @@ utiliser tmdb et prendre les 200 top popular pour en faire une db update chaque 
 -BUG FILM NON TROUVé css
 -message victoire    
 -empecher mettre film déjà mis
+-pb : toujours en dur dans les précédents commit
