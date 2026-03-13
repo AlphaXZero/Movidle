@@ -5,16 +5,18 @@ namespace Movidle.Services;
 public class MovieService
 {
     private readonly HttpClient _http;
+    private readonly string _apiKey;
 
-    public MovieService(HttpClient http)
+    public MovieService(HttpClient http, IConfiguration configuration)
     {
         _http = http;
+        _apiKey = configuration["OmdbApiKey"] ?? throw new InvalidOperationException("OMDb API key is not configured.");
     }
 
     public async Task<Movie?> SearchMovie(string title)
     {
 
-        var url = $"https://www.omdbapi.com/?t={Uri.EscapeDataString(title)}&apikey=394f0c4e";
+        var url = $"https://www.omdbapi.com/?t={Uri.EscapeDataString(title)}&apikey={_apiKey}";
 
         var json = await _http.GetFromJsonAsync<JsonObject>(url) ?? new JsonObject();
         if (json["Response"]?.ToString() == "False") return null;
