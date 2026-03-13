@@ -1,8 +1,6 @@
 ﻿@page "/"
-@using Microsoft.VisualBasic
-@using Movidle.Models
 @rendermode InteractiveServer
-@inject Movidle.Services.MovieService MovieService
+
 
 <table id="movies-table">
     <tr>
@@ -29,93 +27,8 @@
         </tr>
     }
 </table>
-
-<input @bind="title" placeholder="Entrez le nom du film" />
-<button @onclick="SearchMovie">Deviner</button>
+<div class="search-row">
+    <input @bind="title" placeholder="Entrez le nom du film" />
+    <button @onclick="SearchMovie">Deviner</button>
+</div>
 <p>@log</p>
-
-@code {
-    private static readonly Random random = new();
-    private Movie rdm_movie = new();
-    private List<Movidle.Models.Movie> movies = new();
-    private string title = string.Empty;
-    private Movidle.Models.Movie? movie;
-    private string log = string.Empty;
-    private string base_verif(string guess, string toFind)
-    {
-        if (movie != null && rdm_movie != null)
-        {
-            if (guess == toFind)
-            {
-                return "cell_verif_good";
-            }
-            else
-            {
-                return "cell_verif_bad";
-            }
-        }
-        return string.Empty;
-    }
-    private string year_verif(string guess, string toFind)
-    {
-        if (movie != null && rdm_movie != null)
-        {
-            if (guess == toFind)
-            {
-                return "cell_verif_good";
-            }
-            else if (guess == "N/A" || toFind == "N/A")
-            {
-                return "cell_verif_bad";
-            }
-            else if (int.Parse(guess) > int.Parse(toFind))
-            {
-                return "up_year";
-            }
-            else if (int.Parse(guess) < int.Parse(toFind))
-            {
-                return "down_year";
-            }
-        }
-        return string.Empty;
-    }
-
-    private string genre_verif(List<string> guess, List<string> toFind)
-    {
-        if (movie == null || rdm_movie == null) return string.Empty;
-
-        if (guess.SequenceEqual(toFind))
-            return "cell_verif_good";
-
-        if (guess.Intersect(toFind).Any())
-            return "cell_verif_partial";
-
-        return "cell_verif_bad";
-    }
-    private async Task SearchMovie()
-    {
-        movie = await MovieService.SearchMovie(title);
-        if (movie.Title == null)
-        {
-            log = "Film non trouvé. Veuillez réessayer.";
-            return;
-        }
-        else
-        {
-            log = "";
-            movies.Add(movie);
-        }
-    }
-    private async Task GetRandomMovie()
-    {
-        List<string> guess_movies = new() {"inception", "the dark knight", "interstellar", "dunkirk", "tenet", "Batman", "the thing",
-"Brokeback mountain", "the lord of the rings", "the hobbit", "the matrix", "the godfather", "pulp fiction", "fight club", "forrest gump"};
-        rdm_movie = await MovieService.SearchMovie(guess_movies[random.Next(guess_movies.Count)]);
-    }
-    //TODO : nombre de coups, orange , fleche haut bas, petit effort sur le design
-    protected override async Task OnInitializedAsync()
-    {
-        await GetRandomMovie();
-    }
-
-}

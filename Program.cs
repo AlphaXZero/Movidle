@@ -1,4 +1,4 @@
-using moovidle.Components;
+using Movidle;
 using Movidle.Services;
 
 var builder = WebApplication.CreateBuilder(args);
