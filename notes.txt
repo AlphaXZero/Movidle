@@ -7,3 +7,25 @@ utiliser tmdb et prendre les 200 top popular pour en faire une db update chaque 
 -message victoire    
 -empecher mettre film déjà mis
 -pb : toujours en dur dans les précédents commit
+
+
+
+
+
+# BDD
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+
+dbcontext - lien entre code et db
+
+ajouter le service dans program.cs
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite("Data Source=movidle.db"));
+
+
+dotnet tool install --global dotnet-ef
+créer db
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+
+la db a les bons champs grâce à public DbSet<User> Users { get; set; } ds appdbcontext
