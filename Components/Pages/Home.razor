@@ -2,12 +2,8 @@
 
 @rendermode InteractiveServer
 
-<a href="/login">log in</a>
-<a href="/favorites">favorites</a>
-@if (AppState.Username != string.Empty)
-{
-    <p>logged as @AppState.Username</p>
-}
+
+
 <table id="movies-table">
     <tr>
         <th>Title</th>

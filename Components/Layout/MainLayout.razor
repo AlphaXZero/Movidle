@@ -1,11 +1,19 @@
 ﻿@namespace Movidle.Components.Layout
 @inherits LayoutComponentBase
+@inject AppState AppState
 
-<div class="page">
+@if (AppState.Username != string.Empty)
+{
+    <p>logged as @AppState.Username</p>
+}
+<nav class="navbar">
 
-    <main>
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+    <NavLink href="/" class="nav-link">Home </NavLink>
+    <NavLink href="/favorites" class="nav-link">Favorites </NavLink>
+    <NavLink href="/login" class="nav-link">Login</NavLink>
+
+</nav>
+
+<div class="page-container">
+    @Body
 </div>

@@ -5,12 +5,12 @@ utiliser tmdb et prendre les 200 top popular pour en faire une db update chaque 
 -nombre de coups
 -BUG FILM NON TROUVé css
 -message victoire    
--empecher mettre film déjà mis
+-empecher mettre film déjà mis guess
 -pb : toujours en dur dans les précédents commit
 -charger page aussi à l'inscritpion
 -changer css
--voir FavoriteFilms
 -lancer call api quand appuie sur bouton au lieu de chargement page
+-sauver état des guess en cours
 
 
 
