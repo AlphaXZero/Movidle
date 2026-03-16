@@ -14,9 +14,10 @@
         <input id="login-password" type="password" @bind="Password" placeholder="Your password" />
     </div>
 
-    @if (!string.IsNullOrEmpty(register_state))
+    @if (!string.IsNullOrEmpty(register_state) || !string.IsNullOrEmpty(login_state))
     {
         <p class="auth-status">@register_state</p>
+        <p class="auth-status">@login_state</p>
     }
 
     <div class="auth-actions">
