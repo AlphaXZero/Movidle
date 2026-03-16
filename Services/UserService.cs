@@ -49,4 +49,9 @@ public class UserService
             await _db.SaveChangesAsync();
         }
     }
+    public async Task<List<string>> GetFavoriteFilms(int userId)
+    {
+        var user = await _db.Users.FindAsync(userId);
+        return user?.FavoriteFilms ?? new List<string>();
+    }
 }

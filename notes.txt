@@ -7,7 +7,10 @@ utiliser tmdb et prendre les 200 top popular pour en faire une db update chaque 
 -message victoire    
 -empecher mettre film déjà mis
 -pb : toujours en dur dans les précédents commit
-
+-charger page aussi à l'inscritpion
+-changer css
+-voir FavoriteFilms
+-lancer call api quand appuie sur bouton au lieu de chargement page
 
 
 

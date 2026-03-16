@@ -1,7 +1,13 @@
 ﻿@page "/"
+
 @rendermode InteractiveServer
 
-
+<a href="/login">log in</a>
+<a href="/favorites">favorites</a>
+@if (AppState.Username != string.Empty)
+{
+    <p>logged as @AppState.Username</p>
+}
 <table id="movies-table">
     <tr>
         <th>Title</th>
@@ -10,6 +16,7 @@
         <th>Genre</th>
         <th>Metascore</th>
         <th>Country</th>
+        <th></th>
     </tr>
     @foreach (var movie in movies)
     {
@@ -24,11 +31,12 @@
             <td class="@genre_verif(movie.Countries, rdm_movie.Countries)">
                 @string.Join(", ", movie.Countries)
             </td>
+            <td><button @onclick="AddToFavorites">Add to Favorites</button></td>
         </tr>
     }
 </table>
 <div class="search-row">
-    <input @bind="title" placeholder="Entrez le nom du film" />
-    <button @onclick="SearchMovie">Deviner</button>
+    <input @bind="title" placeholder="Enter a movie title" />
+    <button @onclick="SearchMovie">Guess</button>
 </div>
 <p>@log</p>

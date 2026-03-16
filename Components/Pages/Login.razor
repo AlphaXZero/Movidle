@@ -1,0 +1,11 @@
+@page "/login"
+@rendermode InteractiveServer
+
+<p>@AppState.Username</p>
+<div id="inscription">
+    <input @bind="Username" placeholder="Enter your username" />
+    <input @bind="Password" placeholder="Enter your password" />
+    <p>@register_state</p>
+    <button @onclick="HandleRegister">Register</button>
+    <button @onclick="HandleLogin">Login</button>
+</div>

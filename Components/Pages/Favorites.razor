@@ -1,0 +1,33 @@
+@page "/favorites"
+@rendermode InteractiveServer
+@inject Movidle.Services.UserService UserService
+@inject AppState AppState
+@inject NavigationManager NavigationManager
+<a href="/">Home</a>
+
+<p>@AppState.Username</p>
+@if (AppState.Username == string.Empty)
+{
+    <p>You must be <a href="/login">logged in</a> to view your favorite films.</p>
+}
+<table>
+    <tr>
+        <th>Title</th>
+    </tr>
+    @foreach (var film in favoriteFilms)
+    {
+        <tr>
+            <td>@film</td>
+        </tr>
+    }
+</table>
+
+@code {
+
+    private List<string> favoriteFilms = new();
+    protected override async Task OnInitializedAsync()
+    {
+
+        favoriteFilms = await UserService.GetFavoriteFilms(AppState.UserId);
+    }
+}

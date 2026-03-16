@@ -1,5 +1,6 @@
 using Movidle;
 using Movidle.Data;
+using Movidle.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,8 @@ builder.Services.AddRazorComponents()
 builder.Services.AddHttpClient<Movidle.Services.MovieService>();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=movidle.db"));
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<AppState>();
 
 var app = builder.Build();
 

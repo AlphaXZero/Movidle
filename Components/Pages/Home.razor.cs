@@ -1,13 +1,15 @@
-using Microsoft.VisualBasic;
 using Movidle.Models;
 using Movidle.Services;
 using Microsoft.AspNetCore.Components;
+
 
 namespace Movidle.Components.Pages;
 
 public partial class Home : ComponentBase
 {
     [Inject] private MovieService MovieService { get; set; } = default!;
+    [Inject] private UserService UserService { get; set; } = default!;
+    [Inject] private AppState AppState { get; set; } = default!;
 
     private Movie rdm_movie = new();
     private List<Movie> movies = new();
@@ -75,7 +77,18 @@ public partial class Home : ComponentBase
         }
         log = String.Empty;
         movies.Add(movie);
+    }
 
+    private async Task AddToFavorites()
+    {
+        if (movie == null || AppState.UserId == 0)
+        {
+            log = "Please log in to add favorites.";
+            return;
+        }
+
+        await UserService.AddFavoriteFilm(AppState.UserId, movie.Title);
+        log = $"Added '{movie.Title}' to favorites!";
     }
 
     protected override async Task OnInitializedAsync()
