@@ -4,30 +4,50 @@
 @inject AppState AppState
 @inject NavigationManager NavigationManager
 
-
-<p>@AppState.Username</p>
 @if (AppState.Username == string.Empty)
 {
-    <p>You must be <a href="/login">logged in</a> to view your favorite films.</p>
+    <div class="empty-state">
+        <div class="empty-icon">🎬</div>
+        <p>You must be <a href="/login">logged in</a> to view your favorites.</p>
+    </div>
 }
-<table>
-    <tr>
-        <th>Title</th>
-    </tr>
-    @foreach (var film in favoriteFilms)
-    {
-        <tr>
-            <td>@film</td>
-        </tr>
-    }
-</table>
+else if (!favoriteFilms.Any())
+{
+    <div class="empty-state">
+        <div class="empty-icon">☆</div>
+        <p>No favorites yet — go guess some films!</p>
+        <a href="/" class="btn">Play</a>
+    </div>
+}
+else
+{
+    <div class="page-hero">
+        <h1 style="font-size: clamp(2rem, 5vw, 3.5rem);">Favorites</h1>
+        <p class="subtitle">@AppState.Username's collection</p>
+    </div>
+
+    <table id="favorites-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var film in favoriteFilms)
+            {
+                <tr>
+                    <td>@film</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 @code {
-
     private List<string> favoriteFilms = new();
+
     protected override async Task OnInitializedAsync()
     {
-
         favoriteFilms = await UserService.GetFavoriteFilms(AppState.UserId);
     }
 }

@@ -1,38 +1,44 @@
-﻿@page "/"
-
+@page "/"
 @rendermode InteractiveServer
 
-
+<div class="page-hero">
+    <h1>MOVIDLE</h1>
+    <p class="subtitle">Guess the movie from its data</p>
+</div>
 
 <table id="movies-table">
-    <tr>
-        <th>Title</th>
-        <th>Director</th>
-        <th>Year</th>
-        <th>Genre</th>
-        <th>Metascore</th>
-        <th>Country</th>
-        <th></th>
-    </tr>
-    @foreach (var movie in movies)
-    {
+    <thead>
         <tr>
-            <td class="@base_verif(movie.Title, rdm_movie.Title)">@movie.Title</td>
-            <td class="@base_verif(movie.Director, rdm_movie.Director)">@movie.Director</td>
-            <td class="@year_verif(movie.Year, rdm_movie.Year)">@movie.Year</td>
-            <td class="@genre_verif(movie.Genres, rdm_movie.Genres)">
-                @string.Join(", ", movie.Genres)
-            </td>
-            <td class="@year_verif(movie.Metascore, rdm_movie.Metascore)">@movie.Metascore</td>
-            <td class="@genre_verif(movie.Countries, rdm_movie.Countries)">
-                @string.Join(", ", movie.Countries)
-            </td>
-            <td><button @onclick="AddToFavorites">Add to Favorites</button></td>
+            <th>Title</th>
+            <th>Director</th>
+            <th>Year</th>
+            <th>Genre</th>
+            <th>Metascore</th>
+            <th>Country</th>
+            <th></th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var movie in movies)
+        {
+            <tr>
+                <td class="@base_verif(movie.Title, rdm_movie.Title)">@movie.Title</td>
+                <td class="@base_verif(movie.Director, rdm_movie.Director)">@movie.Director</td>
+                <td class="@year_verif(movie.Year, rdm_movie.Year)">@movie.Year</td>
+                <td class="@genre_verif(movie.Genres, rdm_movie.Genres)">@string.Join(", ", movie.Genres)</td>
+                <td class="@year_verif(movie.Metascore, rdm_movie.Metascore)">@movie.Metascore</td>
+                <td class="@genre_verif(movie.Countries, rdm_movie.Countries)">@string.Join(", ", movie.Countries)</td>
+                <td>
+                    <button class="btn-secondary" @onclick="AddToFavorites">♡ Favorite</button>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
 <div class="search-row">
-    <input @bind="title" placeholder="Enter a movie title" />
+    <input @bind="title" placeholder="Enter a movie title…" />
     <button @onclick="SearchMovie">Guess</button>
 </div>
-<p>@log</p>
+
+<p class="game-log">@log</p>

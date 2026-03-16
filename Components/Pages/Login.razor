@@ -1,11 +1,26 @@
 @page "/login"
 @rendermode InteractiveServer
 
-<p>@AppState.Username</p>
-<div id="inscription">
-    <input @bind="Username" placeholder="Enter your username" />
-    <input @bind="Password" placeholder="Enter your password" />
-    <p>@register_state</p>
-    <button @onclick="HandleRegister">Register</button>
-    <button @onclick="HandleLogin">Login</button>
+<div id="auth-card">
+    <h2 class="auth-title">Access</h2>
+
+    <div class="auth-field">
+        <label for="login-username">Username</label>
+        <input id="login-username" @bind="Username" placeholder="Your username" />
+    </div>
+
+    <div class="auth-field">
+        <label for="login-password">Password</label>
+        <input id="login-password" type="password" @bind="Password" placeholder="Your password" />
+    </div>
+
+    @if (!string.IsNullOrEmpty(register_state))
+    {
+        <p class="auth-status">@register_state</p>
+    }
+
+    <div class="auth-actions">
+        <button class="btn-secondary" @onclick="HandleRegister">Register</button>
+        <button @onclick="HandleLogin">Login</button>
+    </div>
 </div>
