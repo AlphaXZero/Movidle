@@ -20,3 +20,5 @@
 - [ ] Message d'erreur affiché si le login échoue (identifiants incorrects)
 - [ ] Animation d'apparition des lignes du tableau (fade-in à chaque nouveau guess)
 - [ ] Indicateur de chargement (`spinner`) pendant la recherche
+- [ ] enter pour valider guess
+- [ ] écran gris quand film non valide entré
