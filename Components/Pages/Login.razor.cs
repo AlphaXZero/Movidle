@@ -14,36 +14,50 @@ public partial class Login : ComponentBase
     private string register_state = string.Empty;
     private string login_state = string.Empty;
 
+    private string spinstate = "inactive";
     private async Task HandleRegister()
     {
         if (Username != string.Empty && Password != string.Empty)
         {
+            spinstate = "spinner";
             var state = await UserService.Register(Username, Password);
             if (state)
             {
-                register_state = "Registration successful! You can now log in.";
+                var user_info = await UserService.Login(Username, Password);
+                AppState.UserId = user_info.Id;
+                AppState.Username = user_info.Username;
+                Navigation.NavigateTo($"/");
             }
             else
             {
                 register_state = "This username is already taken.";
+                spinstate = "inactive";
             }
         }
     }
 
     private async Task HandleLogin()
     {
+        spinstate = "spinner";
         if (Username == string.Empty || Password == string.Empty)
         {
             login_state = "Please enter both username and password.";
+            spinstate = "inactive";
             return;
         }
         else
         {
             var user_info = await UserService.Login(Username, Password);
-            login_state = user_info.Username;
+            if (user_info == null)
+            {
+                login_state = "Invalid username or password.";
+                spinstate = "inactive";
+                return;
+            }
             AppState.UserId = user_info.Id;
             AppState.Username = user_info.Username;
             Navigation.NavigateTo($"/");
+
         }
 
     }

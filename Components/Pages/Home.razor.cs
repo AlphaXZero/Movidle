@@ -7,6 +7,7 @@ namespace Movidle.Components.Pages;
 
 public partial class Home : ComponentBase
 {
+
     [Inject] private MovieService MovieService { get; set; } = default!;
     [Inject] private UserService UserService { get; set; } = default!;
     [Inject] private AppState AppState { get; set; } = default!;

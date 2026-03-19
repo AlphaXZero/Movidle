@@ -22,3 +22,4 @@
 - [ ] Indicateur de chargement (`spinner`) pendant la recherche
 - [ ] enter pour valider guess
 - [ ] écran gris quand film non valide entré
+- [ ] Normaliser noms variables
