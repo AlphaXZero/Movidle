@@ -1,10 +1,10 @@
 # Movidle — Checklist d'améliorations
 
 
-- [ ] `Login.razor.cs` — `HandleLogin` appelle `user_info.Username` sans vérifier si `user_info` est `null` → crash si identifiants incorrects
+- [x] `Login.razor.cs` — `HandleLogin` appelle `user_info.Username` sans vérifier si `user_info` est `null` → crash si identifiants incorrects
+- [X] Indicateur de chargement (`spinner`) pendant la recherche
 - [ ] `Home.razor.cs` — `AddToFavorites` ajoute toujours le **dernier film recherché** (`movie`), pas celui de la ligne cliquée → tous les boutons pointent sur le même film
 - [ ] `year_verif` utilise `int.Parse()` sans `TryParse` → exception si la valeur n'est pas un entier valide (ex: `"2001–2003"`)
-- [ ] `GetRandomMovie` peut renvoyer un doublon dans la liste `movies_pool` (`"Fight Club"` et `"Train to Busan"` apparaissent deux fois)
 - [ ] `AppState` est un service Scoped/Singleton mais ne notifie pas les composants d'un changement → la navbar ne se rafraîchit pas après login sans `StateHasChanged`
 - [ ] **CSS "film non trouvé"** : le message d'erreur quand OMDb ne trouve pas un film n'a pas de style dédié → ajouter classe `.alert-error` sur le `<p class="game-log">`
 - [ ] **Chargement à l'inscription** : après un `Register` réussi, la page ne redirige pas / ne se recharge pas → ajouter `Navigation.NavigateTo("/")` ou auto-login après inscription
@@ -19,7 +19,7 @@
 - [ ] Pouvoir supprimer un film de ses favoris
 - [ ] Message d'erreur affiché si le login échoue (identifiants incorrects)
 - [ ] Animation d'apparition des lignes du tableau (fade-in à chaque nouveau guess)
-- [ ] Indicateur de chargement (`spinner`) pendant la recherche
+
 - [ ] enter pour valider guess
 - [ ] écran gris quand film non valide entré
 - [ ] Normaliser noms variables
