@@ -22,5 +22,8 @@
 - [ ] Normaliser noms variables
 - [ ] Retenir dernier login pour pas se reco à chaque fois
 - [ ] singleton/scoped
+- [ ] expliquer interfacce ?
 - [ ] Tests DB
 - [ ] Acces db distance
+- [ ] Encore + de responsive en utilisant grid de bootstrap par ex ?
+- [ ] Ajouter tuto

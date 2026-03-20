@@ -107,6 +107,5 @@ public partial class Home : ComponentBase
         {
             rdm_movie = AppState.rdm_movie;
         }
-        log = rdm_movie.Title; // For testing purposes, to be removed in production"
     }
 }
