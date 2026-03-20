@@ -19,19 +19,19 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var movie in movies)
+        @foreach (var m in movies)
         {
             <tr>
-                <td data-label="Title" class="@base_verif(movie.Title, rdm_movie.Title)">@movie.Title</td>
-                <td data-label="Director" class="@base_verif(movie.Director, rdm_movie.Director)">@movie.Director</td>
-                <td data-label="Year" class="@year_verif(movie.Year, rdm_movie.Year)">@movie.Year</td>
-                <td data-label="Genre" class="@genre_verif(movie.Genres, rdm_movie.Genres)">@string.Join(", ", movie.Genres)
+                <td data-label="Title" class="@base_verif(m.Title, rdm_movie.Title)">@m.Title</td>
+                <td data-label="Director" class="@base_verif(m.Director, rdm_movie.Director)">@m.Director</td>
+                <td data-label="Year" class="@year_verif(m.Year, rdm_movie.Year)">@m.Year</td>
+                <td data-label="Genre" class="@genre_verif(m.Genres, rdm_movie.Genres)">@string.Join(", ", m.Genres)
                 </td>
-                <td data-label="Metascore" class="@year_verif(movie.Metascore, rdm_movie.Metascore)">@movie.Metascore</td>
-                <td data-label="Country" class="@genre_verif(movie.Countries, rdm_movie.Countries)">@string.Join(", ",
-                                                        movie.Countries)</td>
+                <td data-label="Metascore" class="@year_verif(m.Metascore, rdm_movie.Metascore)">@m.Metascore</td>
+                <td data-label="Country" class="@genre_verif(m.Countries, rdm_movie.Countries)">@string.Join(", ",
+                                                                            m.Countries)</td>
                     <td>
-                        <button class="btn-secondary" @onclick="() => AddToFavorites(movie)">♡ Favorite</button>
+                        <button class="btn-secondary" @onclick="() => AddToFavorites(m)">♡ Favorite</button>
                     </td>
                 </tr>
             }

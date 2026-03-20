@@ -20,7 +20,7 @@ public partial class Home : ComponentBase
 
     private string base_verif(string guess, string toFind)
     {
-        if (movie != null && rdm_movie != null)
+        if (guess != null && toFind != null)
         {
             if (guess == toFind)
             {
@@ -35,7 +35,7 @@ public partial class Home : ComponentBase
     }
     private string year_verif(string guess, string toFind)
     {
-        if (movie != null && rdm_movie != null)
+        if (guess != null && toFind != null)
         {
             if (guess == toFind)
             {
@@ -59,7 +59,7 @@ public partial class Home : ComponentBase
 
     private string genre_verif(List<string> guess, List<string> toFind)
     {
-        if (movie == null || rdm_movie == null) return string.Empty;
+        if (guess == null || toFind == null) return string.Empty;
 
         if (guess.SequenceEqual(toFind))
             return "cell_verif_good";
@@ -80,7 +80,6 @@ public partial class Home : ComponentBase
         log = String.Empty;
 
         AppState.CurrentGuess.Add(movie);
-        log = $"CurrentGuess count: {AppState.CurrentGuess.Count}";
         title = String.Empty;
     }
 
@@ -99,7 +98,15 @@ public partial class Home : ComponentBase
     protected override async Task OnInitializedAsync()
     {
         movies = AppState.CurrentGuess;
-        
-        rdm_movie = await MovieService.GetRandomMovie();
+        if (AppState.rdm_movie.Title == string.Empty)
+        {
+            rdm_movie = await MovieService.GetRandomMovie();
+            AppState.rdm_movie = rdm_movie;
+        }
+        else
+        {
+            rdm_movie = AppState.rdm_movie;
+        }
+        log = rdm_movie.Title; // For testing purposes, to be removed in production"
     }
 }
