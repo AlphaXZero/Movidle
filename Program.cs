@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddHttpClient<Movidle.Services.MovieService>();
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=movidle.db"));
+    options.UseSqlite("Data Source=data/movidle.db"));
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<AppState>();
 
