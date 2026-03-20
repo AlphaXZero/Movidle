@@ -1,6 +1,7 @@
 using Movidle.Models;
 using Movidle.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 
 
 namespace Movidle.Components.Pages;
@@ -126,6 +127,13 @@ public partial class Home : ComponentBase
         }
 
         await UserService.RemoveFavoriteFilm(AppState.UserId, _movie.Title);
+    }
+    private async Task HandleKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await MakeAGuess();
+        }
     }
 
     protected override async Task OnInitializedAsync()

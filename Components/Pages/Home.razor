@@ -29,7 +29,7 @@
                 </td>
                 <td data-label="Metascore" class="@year_verif(m.Metascore, rdm_movie.Metascore)">@m.Metascore</td>
                 <td data-label="Country" class="@genre_verif(m.Countries, rdm_movie.Countries)">@string.Join(", ",
-                                                                                                                                                                                                                        m.Countries)</td>
+                                                                                                                                                                                                                                                                                                                            m.Countries)</td>
                     <td>
                         @if (isFavorite(m) == "favorite")
                         {
@@ -46,7 +46,8 @@
     </table>
 
     <div class="search-row">
-        <input @bind="title" placeholder="Enter a movie title…" />
+        <input @bind-value="title" @bind-value:event="oninput" placeholder="Enter a movie title…"
+               @onkeydown="HandleKeyDown" />
         <button @onclick="MakeAGuess">Guess</button>
     </div>
 
