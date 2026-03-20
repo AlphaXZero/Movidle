@@ -4,10 +4,8 @@
 - [x] `Login.razor.cs` — `HandleLogin` appelle `user_info.Username` sans vérifier si `user_info` est `null` → crash si identifiants incorrects
 - [X] Indicateur de chargement (`spinner`) pendant la recherche
 - [ ] `Home.razor.cs` — `AddToFavorites` ajoute toujours le **dernier film recherché** (`movie`), pas celui de la ligne cliquée → tous les boutons pointent sur le même film
-- [ ] `year_verif` utilise `int.Parse()` sans `TryParse` → exception si la valeur n'est pas un entier valide (ex: `"2001–2003"`)
-- [ ] `AppState` est un service Scoped/Singleton mais ne notifie pas les composants d'un changement → la navbar ne se rafraîchit pas après login sans `StateHasChanged`
-- [ ] **CSS "film non trouvé"** : le message d'erreur quand OMDb ne trouve pas un film n'a pas de style dédié → ajouter classe `.alert-error` sur le `<p class="game-log">`
-- [ ] **Chargement à l'inscription** : après un `Register` réussi, la page ne redirige pas / ne se recharge pas → ajouter `Navigation.NavigateTo("/")` ou auto-login après inscription
+- [X] Le texte lgged in n'est pas actualisé
+- [X] **Chargement à l'inscription** : après un `Register` réussi, la page ne redirige pas / ne se recharge pas → ajouter `Navigation.NavigateTo("/")` ou auto-login après inscription
 - [ ] Normaliser les titres avec chiffres romains : **convertir "III" → "3"** (et inversement) avant la comparaison OMDb/TMDB, ou tenter les deux formes en cas d'échec
 - [ ] **Compteur de tentatives** : afficher `X / 6` au-dessus ou sous le tableau
 - [ ] **Empêcher de soumettre un film déjà proposé** : vérifier que le titre n'est pas déjà dans `movies` avant d'ajouter
@@ -23,3 +21,4 @@
 - [ ] enter pour valider guess
 - [ ] écran gris quand film non valide entré
 - [ ] Normaliser noms variables
+- [ ] Retenir dernier login pour pas se reco à chaque fois

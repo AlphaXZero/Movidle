@@ -29,7 +29,7 @@
                 <td class="@year_verif(movie.Metascore, rdm_movie.Metascore)">@movie.Metascore</td>
                 <td class="@genre_verif(movie.Countries, rdm_movie.Countries)">@string.Join(", ", movie.Countries)</td>
                 <td>
-                    <button class="btn-secondary" @onclick="AddToFavorites">♡ Favorite</button>
+                    <button class="btn-secondary" @onclick="() => AddToFavorites(movie)">♡ Favorite</button>
                 </td>
             </tr>
         }

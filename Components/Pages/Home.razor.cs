@@ -17,6 +17,7 @@ public partial class Home : ComponentBase
     private string title = string.Empty;
     private Movie? movie;
     private string log = string.Empty;
+
     private string base_verif(string guess, string toFind)
     {
         if (movie != null && rdm_movie != null)
@@ -78,22 +79,25 @@ public partial class Home : ComponentBase
         }
         log = String.Empty;
         movies.Add(movie);
+        AppState.CurrentGuess.Add(movie);
     }
 
-    private async Task AddToFavorites()
+    private async Task AddToFavorites(Movie _movie)
     {
-        if (movie == null || AppState.UserId == 0)
+        if (_movie == null || AppState.UserId == 0)
         {
             log = "Please log in to add favorites.";
             return;
         }
 
-        await UserService.AddFavoriteFilm(AppState.UserId, movie.Title);
-        log = $"Added '{movie.Title}' to favorites!";
+        await UserService.AddFavoriteFilm(AppState.UserId, _movie.Title);
+        log = $"Added '{_movie.Title}' to favorites!";
     }
 
     protected override async Task OnInitializedAsync()
     {
+        movies = AppState.CurrentGuess.Count > 0 ? AppState.CurrentGuess : new List<Movie>();
         rdm_movie = await MovieService.GetRandomMovie();
+        StateHasChanged();
     }
 }
