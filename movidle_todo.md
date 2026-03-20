@@ -13,7 +13,6 @@
 - [ ] **Sauvegarder l'état des guesses en cours** : persister `movies` + `rdm_movie` en session (Blazor `ProtectedSessionStorage`) pour résister au refresh
 - [ ] Stocker les films dans une db pour éviter les appels API répétés et permettre l'autocomplete (utiliser tmdb à la place pour mettre à jour la db chaque jour)
 - [ ] `GetRandomMovie` pioche dans la DB locale au lieu d'appeler l'API à chaque partie
-- [ ] Déconnexion (bouton logout + reset de `AppState`)
 - [ ] Pouvoir supprimer un film de ses favoris
 - [ ] Message d'erreur affiché si le login échoue (identifiants incorrects)
 - [ ] Animation d'apparition des lignes du tableau (fade-in à chaque nouveau guess)
@@ -22,3 +21,6 @@
 - [ ] écran gris quand film non valide entré
 - [ ] Normaliser noms variables
 - [ ] Retenir dernier login pour pas se reco à chaque fois
+- [ ] singleton/scoped
+- [ ] Tests DB
+- [ ] Acces db distance

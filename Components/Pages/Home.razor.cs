@@ -78,8 +78,10 @@ public partial class Home : ComponentBase
             return;
         }
         log = String.Empty;
-        movies.Add(movie);
+
         AppState.CurrentGuess.Add(movie);
+        log = $"CurrentGuess count: {AppState.CurrentGuess.Count}";
+        title = String.Empty;
     }
 
     private async Task AddToFavorites(Movie _movie)
@@ -96,8 +98,8 @@ public partial class Home : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        movies = AppState.CurrentGuess.Count > 0 ? AppState.CurrentGuess : new List<Movie>();
+        movies = AppState.CurrentGuess;
+        
         rdm_movie = await MovieService.GetRandomMovie();
-        StateHasChanged();
     }
 }
