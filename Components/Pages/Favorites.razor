@@ -3,6 +3,7 @@
 @inject AppState AppState
 @inject NavigationManager NavigationManager
 
+
 @if (AppState.Username == string.Empty)
 {
     <div class="empty-state">
@@ -35,7 +36,10 @@ else
             @foreach (var film in favoriteFilms)
             {
                 <tr>
-                    <td>@film</td>
+                    <th>@film </th>
+                    <th>
+                        <button class="btn-secondary_unfav" @onclick="() => RemoveFromFavorites(film)">♥ Unfavorite</button>
+                    </th>
                 </tr>
             }
         </tbody>
@@ -44,6 +48,11 @@ else
 
 @code {
     private List<string> favoriteFilms = new();
+    private async Task RemoveFromFavorites(string film)
+    {
+        await UserService.RemoveFavoriteFilm(AppState.UserId, film);
+        favoriteFilms.Remove(film);
+    }
 
     protected override async Task OnInitializedAsync()
     {

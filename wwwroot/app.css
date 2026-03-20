@@ -508,9 +508,22 @@ button:active,
     font-size: 0.95rem;
     font-weight: 300;
     color: var(--text);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius);
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
     transition: background 0.2s;
+    vertical-align: middle;
+}
+
+#favorites-table td:first-child {
+    border-left: 1px solid var(--border-subtle);
+    border-radius: var(--radius) 0 0 var(--radius);
+    font-weight: 400;
+}
+
+#favorites-table td:last-child {
+    border-right: 1px solid var(--border-subtle);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    text-align: right;
 }
 
 #favorites-table tbody tr:hover td {
