@@ -4,13 +4,13 @@ using Movidle.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var dbPath = Environment.GetEnvironmentVariable("DB_PATH") ?? "movidle.db";
 
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddHttpClient<Movidle.Services.MovieService>();
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=data/movidle.db"));
+    options.UseSqlite("Data Source={DB_PATH}"));
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<AppState>();
 
