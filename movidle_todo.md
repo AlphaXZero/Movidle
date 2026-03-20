@@ -23,7 +23,7 @@
 
 URGENT
 - [ ] **Message de victoire** : afficher un écran/modal stylisé quand `movie.Title == rdm_movie.Title`
-- [ ] Problème DB à distance
+- [X] Problème DB à distance
 - [ ] **Empêcher de soumettre un film déjà proposé** : vérifier que le titre n'est pas déjà dans `movies` avant d'ajouter
 - [ ] Pouvoir supprimer un film de ses favoris
 - [ ] enter pour valider guess

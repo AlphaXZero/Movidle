@@ -17,7 +17,14 @@ public partial class Home : ComponentBase
     private string title = string.Empty;
     private Movie? movie;
     private string log = string.Empty;
+    private bool won = false;
 
+    private string isFavorite(Movie _movie)
+    {
+        if (AppState.UserId == 0) return string.Empty;
+        
+        return String.Empty;
+    }
     private string base_verif(string guess, string toFind)
     {
         if (guess != null && toFind != null)
@@ -69,7 +76,7 @@ public partial class Home : ComponentBase
 
         return "cell_verif_bad";
     }
-    private async Task SearchMovie()
+    private async Task MakeAGuess()
     {
         movie = await MovieService.SearchMovie(title);
         if (movie?.Title == null)
@@ -81,6 +88,19 @@ public partial class Home : ComponentBase
 
         AppState.CurrentGuess.Add(movie);
         title = String.Empty;
+        if (movie.Title == rdm_movie.Title)
+        {
+            won = true;
+        }
+    }
+
+    private void Restart()
+    {
+        AppState.CurrentGuess.Clear();
+        AppState.rdm_movie = new Movie();
+        won = false;
+        // Force reinitialization of the component to reset the game state
+        _ = OnInitializedAsync();
     }
 
     private async Task AddToFavorites(Movie _movie)
@@ -107,6 +127,5 @@ public partial class Home : ComponentBase
         {
             rdm_movie = AppState.rdm_movie;
         }
-        log = rdm_movie.Title; // For testing purposes, to be removed in production"
     }
 }

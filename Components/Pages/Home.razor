@@ -29,7 +29,7 @@
                 </td>
                 <td data-label="Metascore" class="@year_verif(m.Metascore, rdm_movie.Metascore)">@m.Metascore</td>
                 <td data-label="Country" class="@genre_verif(m.Countries, rdm_movie.Countries)">@string.Join(", ",
-                                                                            m.Countries)</td>
+                                                                                                                                        m.Countries)</td>
                     <td>
                         <button class="btn-secondary" @onclick="() => AddToFavorites(m)">♡ Favorite</button>
                     </td>
@@ -40,7 +40,20 @@
 
     <div class="search-row">
         <input @bind="title" placeholder="Enter a movie title…" />
-        <button @onclick="SearchMovie">Guess</button>
+        <button @onclick="MakeAGuess">Guess</button>
     </div>
 
     <p class="game-log">@log</p>
+
+    @if (won)
+    {
+        <div class="modal-overlay">
+            <div class="modal-card">
+                <h2 class="modal-title">🎬 You got it!</h2>
+                <p class="modal-subtitle">The movie was</p>
+                <p class="modal-movie">@rdm_movie.Title</p>
+                <p class="modal-tries">Found in @movies.Count guess@(movies.Count > 1 ? "es" : "")</p>
+                <button @onclick="Restart">Play again</button>
+            </div>
+        </div>
+    }
