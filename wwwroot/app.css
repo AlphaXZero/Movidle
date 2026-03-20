@@ -260,6 +260,11 @@ button:active,
     transform: translateY(0);
 }
 
+.btn-secondary_unfav {
+    border-color: var(--red);
+    color: var(--red);
+}
+
 .btn-secondary {
     border-color: var(--border);
     color: var(--text-dim);

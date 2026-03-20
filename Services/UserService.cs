@@ -49,6 +49,18 @@ public class UserService
             await _db.SaveChangesAsync();
         }
     }
+
+    public async Task RemoveFavoriteFilm(int userId, string filmTitle)
+    {
+        var user = await _db.Users.FindAsync(userId);
+        if (user == null) return;
+
+        if (user.FavoriteFilms.Contains(filmTitle))
+        {
+            user.FavoriteFilms.Remove(filmTitle);
+            await _db.SaveChangesAsync();
+        }
+    }
     public async Task<List<string>> GetFavoriteFilms(int userId)
     {
         var user = await _db.Users.FindAsync(userId);

@@ -29,9 +29,16 @@
                 </td>
                 <td data-label="Metascore" class="@year_verif(m.Metascore, rdm_movie.Metascore)">@m.Metascore</td>
                 <td data-label="Country" class="@genre_verif(m.Countries, rdm_movie.Countries)">@string.Join(", ",
-                                                                                                                                        m.Countries)</td>
+                                                                                                                                                                                                                        m.Countries)</td>
                     <td>
-                        <button class="btn-secondary" @onclick="() => AddToFavorites(m)">♡ Favorite</button>
+                        @if (isFavorite(m) == "favorite")
+                        {
+                            <button class="btn-secondary_unfav" @onclick="() => RemoveFromFavorites(m)">♥ Unfavorite</button>
+                        }
+                        else
+                        {
+                            <button class="btn-secondary" @onclick="() => AddToFavorites(m)">♡ Favorite</button>
+                        }
                     </td>
                 </tr>
             }

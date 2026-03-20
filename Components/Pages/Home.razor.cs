@@ -18,12 +18,15 @@ public partial class Home : ComponentBase
     private Movie? movie;
     private string log = string.Empty;
     private bool won = false;
-
+    private List<string> favoriteFilms = new();
     private string isFavorite(Movie _movie)
     {
         if (AppState.UserId == 0) return string.Empty;
-        
-        return String.Empty;
+        if (favoriteFilms.Contains(_movie.Title))
+        {
+            return "favorite";
+        }
+        return "unfavorite";
     }
     private string base_verif(string guess, string toFind)
     {
@@ -112,11 +115,22 @@ public partial class Home : ComponentBase
         }
 
         await UserService.AddFavoriteFilm(AppState.UserId, _movie.Title);
-        log = $"Added '{_movie.Title}' to favorites!";
+    }
+
+    private async Task RemoveFromFavorites(Movie _movie)
+    {
+        if (_movie == null || AppState.UserId == 0)
+        {
+            log = "Please log in to remove favorites.";
+            return;
+        }
+
+        await UserService.RemoveFavoriteFilm(AppState.UserId, _movie.Title);
     }
 
     protected override async Task OnInitializedAsync()
     {
+        favoriteFilms = await UserService.GetFavoriteFilms(AppState.UserId);
         movies = AppState.CurrentGuess;
         if (AppState.rdm_movie.Title == string.Empty)
         {
