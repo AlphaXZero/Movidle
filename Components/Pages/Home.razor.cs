@@ -85,11 +85,15 @@ public partial class Home : ComponentBase
         movie = await MovieService.SearchMovie(title);
         if (movie?.Title == null)
         {
-            log = "Film non trouvé. Veuillez réessayer.";
+            log = "Movie not found. Please try again.";
+            return;
+        }
+        if (movies.Any(m => m.Title == movie.Title))
+        {
+            log = "You have already guessed this movie. Try another one.";
             return;
         }
         log = String.Empty;
-
         AppState.CurrentGuess.Add(movie);
         title = String.Empty;
         if (movie.Title == rdm_movie.Title)
@@ -114,7 +118,6 @@ public partial class Home : ComponentBase
             log = "Please log in to add favorites.";
             return;
         }
-
         await UserService.AddFavoriteFilm(AppState.UserId, _movie.Title);
     }
 
@@ -125,9 +128,9 @@ public partial class Home : ComponentBase
             log = "Please log in to remove favorites.";
             return;
         }
-
         await UserService.RemoveFavoriteFilm(AppState.UserId, _movie.Title);
     }
+
     private async Task HandleKeyDown(KeyboardEventArgs e)
     {
         if (e.Key == "Enter")

@@ -9,21 +9,22 @@
 - [X] écran gris quand film non valide entré
 - [X] **Sauvegarder l'état des guesses en cours** : persister `movies` + `rdm_movie` en session (Blazor `ProtectedSessionStorage`) pour résister au refresh
 - [X] Message d'erreur affiché si le login échoue (identifiants incorrects)
-- [ ] Normaliser les titres avec chiffres romains : **convertir "III" → "3"** (et inversement) avant la comparaison OMDb/TMDB, ou tenter les deux formes en cas d'échec
-- [ ] **Compteur de tentatives** : afficher `X / 6` au-dessus ou sous le tableau
+- [x] **Compteur de tentatives** : afficher `X / 6` au-dessus ou sous le tableau
 - [ ] Stocker les films dans une db pour éviter les appels API répétés et permettre l'autocomplete (utiliser tmdb à la place pour mettre à jour la db chaque jour)
+- [ ] Normaliser les titres avec chiffres romains : **convertir "III" → "3"** (et inversement) avant la comparaison OMDb/TMDB, ou tenter les deux formes en cas d'échec
 - [ ] Animation d'apparition des lignes du tableau (fade-in à chaque nouveau guess)
-- [ ] Normaliser noms variables
-- [ ] Retenir dernier login pour pas se reco à chaque fois dans localsto
-- [ ] singleton/scoped
-- [ ] Utilisation interface ?
-- [ ] Tests DB
+- [ ] Retenir dernier login dans localstorage pour pas se reco à chaque fois dans
 - [ ] Encore + de responsive en utilisant grid de bootstrap par ex ?
 - [ ] Ajouter tuto pour expliquer le jeu
 
 URGENT
 - [X] **Message de victoire** : afficher un écran/modal stylisé quand `movie.Title == rdm_movie.Title`
 - [X] Problème DB à distance
-- [ ] **Empêcher de soumettre un film déjà proposé** : vérifier que le titre n'est pas déjà dans `movies` avant d'ajouter
+- [x] **Empêcher de soumettre un film déjà proposé** : vérifier que le titre n'est pas déjà dans `movies` avant d'ajouter
 - [X] Pouvoir supprimer un film de ses favoris
-- [ ] enter pour valider guess
+- [x] enter pour valider guess
+- [ ] Normaliser noms variables
+- [ ] Improve readme
+- [ ] Tests DB
+- [ ] singleton/scoped
+- [ ] Utilisation interface ?
