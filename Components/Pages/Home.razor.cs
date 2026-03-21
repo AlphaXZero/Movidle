@@ -104,7 +104,7 @@ public partial class Home : ComponentBase
     private void Restart()
     {
         AppState.GuessHistory.Clear();
-        AppState.rdm_movie = new Movie();
+        AppState.RandomMovie = new Movie();
         isWon = false;
         // Force reinitialization of the component to reset the game state
         _ = OnInitializedAsync();
@@ -142,14 +142,14 @@ public partial class Home : ComponentBase
     {
         favoriteFilms = await UserService.GetFavoriteFilms(AppState.UserId);
         movies = AppState.GuessHistory;
-        if (AppState.rdm_movie.Title == string.Empty)
+        if (AppState.RandomMovie.Title == string.Empty)
         {
             randomMovie = await MovieService.GetRandomMovie();
-            AppState.rdm_movie = randomMovie;
+            AppState.RandomMovie = randomMovie;
         }
         else
         {
-            randomMovie = AppState.rdm_movie;
+            randomMovie = AppState.RandomMovie;
         }
     }
 }
