@@ -10,7 +10,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddHttpClient<Movidle.Services.MovieService>();
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source={DB_PATH}"));
+    options.UseSqlite($"Data Source={dbPath}"));
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<AppState>();
 

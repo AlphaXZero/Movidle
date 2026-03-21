@@ -1,5 +1,5 @@
 # Movidle - Small game where you have to guess a movie name.
-
+https://movidle-production.up.railway.app/
 ## How to Play
 - Type a movie title in the search bar and press **Guess**
 - Each guess reveals how close you are — every cell is color-coded:
@@ -15,4 +15,4 @@ and add the key in the `appsettings.json`:
 ## Informations
 - CSS file has been made with the help of claudeai.
 - See `misc/todo` for potential upcoming improvements.
-
+- I made smalls test (for db connection) in another project.
