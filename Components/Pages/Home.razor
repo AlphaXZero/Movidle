@@ -22,14 +22,14 @@
         @foreach (var m in movies)
         {
             <tr>
-                <td data-label="Title" class="@base_verif(m.Title, rdm_movie.Title)">@m.Title</td>
-                <td data-label="Director" class="@base_verif(m.Director, rdm_movie.Director)">@m.Director</td>
-                <td data-label="Year" class="@year_verif(m.Year, rdm_movie.Year)">@m.Year</td>
-                <td data-label="Genre" class="@genre_verif(m.Genres, rdm_movie.Genres)">@string.Join(", ", m.Genres)
+                <td data-label="Title" class="@base_verif(m.Title, randomMovie.Title)">@m.Title</td>
+                <td data-label="Director" class="@base_verif(m.Director, randomMovie.Director)">@m.Director</td>
+                <td data-label="Year" class="@year_verif(m.Year, randomMovie.Year)">@m.Year</td>
+                <td data-label="Genre" class="@genre_verif(m.Genres, randomMovie.Genres)">@string.Join(", ", m.Genres)
                 </td>
-                <td data-label="Metascore" class="@year_verif(m.Metascore, rdm_movie.Metascore)">@m.Metascore</td>
-                <td data-label="Country" class="@genre_verif(m.Countries, rdm_movie.Countries)">@string.Join(", ",
-                                                                                                                                                                                                                                                                                                                            m.Countries)</td>
+                <td data-label="Metascore" class="@year_verif(m.Metascore, randomMovie.Metascore)">@m.Metascore</td>
+                <td data-label="Country" class="@genre_verif(m.Countries, randomMovie.Countries)">@string.Join(", ",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    m.Countries)</td>
                     <td>
                         @if (isFavorite(m) == "favorite")
                         {
@@ -46,20 +46,20 @@
     </table>
 
     <div class="search-row">
-        <input @bind-value="title" @bind-value:event="oninput" placeholder="Enter a movie title…"
+        <input @bind-value="titleEntry" @bind-value:event="oninput" placeholder="Enter a movie title…"
                @onkeydown="HandleKeyDown" />
         <button @onclick="MakeAGuess">Guess</button>
     </div>
 
     <p class="game-log">@log</p>
 
-    @if (won)
+    @if (isWon)
     {
         <div class="modal-overlay">
             <div class="modal-card">
                 <h2 class="modal-title">🎬 You got it!</h2>
                 <p class="modal-subtitle">The movie was</p>
-                <p class="modal-movie">@rdm_movie.Title</p>
+                <p class="modal-movie">@randomMovie.Title</p>
                 <p class="modal-tries">Found in @movies.Count guess@(movies.Count > 1 ? "es" : "")</p>
                 <button @onclick="Restart">Play again</button>
             </div>

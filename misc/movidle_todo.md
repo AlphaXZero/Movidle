@@ -28,3 +28,7 @@ URGENT
 - [ ] Normaliser noms variables
 - [x] Improve readme
 - [x] Tests DB
+- [ ] Enter pour se connecter
+- [x] REfactor logging
+- [ ] Refactor home
+- [ ] Refactor favorites

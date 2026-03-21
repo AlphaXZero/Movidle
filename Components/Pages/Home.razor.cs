@@ -12,13 +12,12 @@ public partial class Home : ComponentBase
     [Inject] private MovieService MovieService { get; set; } = default!;
     [Inject] private UserService UserService { get; set; } = default!;
     [Inject] private AppState AppState { get; set; } = default!;
-
-    private Movie rdm_movie = new();
+    private Movie? lastGuessMovie;
     private List<Movie> movies = new();
-    private string title = string.Empty;
-    private Movie? movie;
+    private Movie randomMovie = new();
+    private string titleEntry = string.Empty;
     private string log = string.Empty;
-    private bool won = false;
+    private bool isWon = false;
     private List<string> favoriteFilms = new();
     private string isFavorite(Movie _movie)
     {
@@ -82,31 +81,31 @@ public partial class Home : ComponentBase
     }
     private async Task MakeAGuess()
     {
-        movie = await MovieService.SearchMovie(title);
-        if (movie?.Title == null)
+        lastGuessMovie = await MovieService.SearchMovie(titleEntry);
+        if (lastGuessMovie?.Title == null)
         {
             log = "Movie not found. Please try again.";
             return;
         }
-        if (movies.Any(m => m.Title == movie.Title))
+        if (movies.Any(m => m.Title == lastGuessMovie.Title))
         {
             log = "You have already guessed this movie. Try another one.";
             return;
         }
         log = String.Empty;
-        AppState.CurrentGuess.Add(movie);
-        title = String.Empty;
-        if (movie.Title == rdm_movie.Title)
+        AppState.GuessHistory.Add(lastGuessMovie);
+        titleEntry = String.Empty;
+        if (lastGuessMovie.Title == randomMovie.Title)
         {
-            won = true;
+            isWon = true;
         }
     }
 
     private void Restart()
     {
-        AppState.CurrentGuess.Clear();
+        AppState.GuessHistory.Clear();
         AppState.rdm_movie = new Movie();
-        won = false;
+        isWon = false;
         // Force reinitialization of the component to reset the game state
         _ = OnInitializedAsync();
     }
@@ -142,15 +141,15 @@ public partial class Home : ComponentBase
     protected override async Task OnInitializedAsync()
     {
         favoriteFilms = await UserService.GetFavoriteFilms(AppState.UserId);
-        movies = AppState.CurrentGuess;
+        movies = AppState.GuessHistory;
         if (AppState.rdm_movie.Title == string.Empty)
         {
-            rdm_movie = await MovieService.GetRandomMovie();
-            AppState.rdm_movie = rdm_movie;
+            randomMovie = await MovieService.GetRandomMovie();
+            AppState.rdm_movie = randomMovie;
         }
         else
         {
-            rdm_movie = AppState.rdm_movie;
+            randomMovie = AppState.rdm_movie;
         }
     }
 }
