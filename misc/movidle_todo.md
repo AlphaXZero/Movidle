@@ -16,6 +16,7 @@
 - [ ] Retenir dernier login dans localstorage pour pas se reco à chaque fois dans
 - [ ] Encore + de responsive en utilisant grid de bootstrap par ex ?
 - [ ] Ajouter tuto pour expliquer le jeu
+- [ ] Enlever AppState.Username car inutile ? évite recherche dans db ) voir
 
 URGENT
 - [X] **Message de victoire** : afficher un écran/modal stylisé quand `movie.Title == rdm_movie.Title`

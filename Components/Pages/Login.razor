@@ -22,9 +22,8 @@
         <div class="@spinstate"></div>
     </div>
 
-    @if (!string.IsNullOrEmpty(register_state) || !string.IsNullOrEmpty(login_state))
+    @if (!string.IsNullOrEmpty(log))
     {
-        <p class="auth-status">@register_state</p>
-        <p class="auth-status">@login_state</p>
+        <p class="auth-status">@log</p>
     }
 </div>
